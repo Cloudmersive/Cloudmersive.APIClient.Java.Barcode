@@ -1,31 +1,13 @@
 ﻿{
-    "packageName": "Cloudmersive.APIClient.NETCore.VirusScan",
-    "packageVersion": "4.0.0",
-    "netCoreProjectFile": "true",
-    "packageGuid": "d6bea351-f1c3-4718-9384-3673c83d6996",
-    "targetFramework": "netstandard2.0",
-
-
-    "packageTitle":       "Cloudmersive Virus Scan API .NET Core Client",
-    "packageDescription": "Cloudmersive Virus Scan API Client for .NET Core allows you to scan files, URLs, and webistes for viruses, malware, trojans, ransomware, spyware, and many other types of threats.  Multi-factor scanning across many delivery methods including polymorphic and multipartite.  Scanning supports files, archives, and recursive file formats.",
-
-    "packageAuthors":     "Cloudmersive LLC",
-    "packageCompany":     "Cloudmersive LLC",
-    "packageProjectUrl":  "https://cloudmersive.com/virus-api",
-    "packageUrl":  "https://cloudmersive.com/virus-api",
-    "packageIconUrl":     "https://cloudmersive.com/images/cmsdk.png",
-    "packageTags":        "virus scan security malware cloudmersive",
-    "releaseNote":        "Change to HttpClient core",
-
-    "gitHost":   "github.com",
-    "gitUserId": "Cloudmersive",
-    "gitRepoId": "Cloudmersive.APIClient.NETCore.VirusScan",
-
-    "licenseId": "Apache-2.0",
-
-    "packageCopyright":          "Copyright © 2025 Cloudmersive, LLC.",
-    "supportsFileParameters": true,
-    "library": "restsharp"
-}
-
-
+    "name": "cloudmersive-barcode-java-client",
+    "version": "10.0.0",
+    "private": true,
+    "description": "Generate the Cloudmersive Barcode API Java V2 Client",
+    "scripts": {
+      "generate": "openapi-generator-cli generate -g java -i https://api.cloudmersive.com/swagger/api/barcode -o sdk/cloudmersive-barcode-java --api-package com.cloudmersive.client --model-package com.cloudmersive.client --invoker-package com.cloudmersive.client.invoker --additional-properties=library=okhttp-gson,groupId=com.cloudmersive,artifactId=cloudmersive-barcode-api-java-client,artifactVersion=1.0.0,dateLibrary=java8,hideGenerationTimestamp=true"
+    },
+    "devDependencies": {
+      "@openapitools/openapi-generator-cli": "^2"
+    }
+  }
+  

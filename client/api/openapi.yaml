@@ -1,0 +1,718 @@
+openapi: 3.0.1
+info:
+  description: "Barcode APIs let you generate barcode images, and recognize values\
+    \ from images of barcodes."
+  title: barcodeapi
+  version: v1
+servers:
+- url: https://api.cloudmersive.com/
+paths:
+  /barcode/lookup/ean:
+    post:
+      description: Lookup an input EAN barcode and return key details about the product
+      operationId: BarcodeLookup_EanLookup
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+          text/json:
+            schema:
+              type: string
+          application/xml:
+            schema:
+              type: string
+          text/xml:
+            schema:
+              type: string
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+        description: Barcode value
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BarcodeLookupResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BarcodeLookupResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/BarcodeLookupResponse'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/BarcodeLookupResponse'
+          description: OK
+      security:
+      - Apikey: []
+      summary: "Lookup EAN barcode value, return product data"
+      tags:
+      - BarcodeLookup
+      x-codegen-request-body-name: value
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+      - application/xml
+      - text/json
+      - text/xml
+  /barcode/scan/image:
+    post:
+      description: "Scan an image or photo of a barcode and return the result.  Supported\
+        \ barcode types include AZTEC, CODABAR, CODE_39, CODE_93, CODE_128, DATA_MATRIX,\
+        \ EAN_8, EAN_13, ITF, MAXICODE, PDF_417, QR_CODE, RSS_14, RSS_EXPANDED, UPC_A,\
+        \ UPC_E, All_1D, UPC_EAN_EXTENSION, MSI, PLESSEY, IMB"
+      operationId: BarcodeScan_Image
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/BarcodeScan_Image_request'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BarcodeScanResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BarcodeScanResult'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/BarcodeScanResult'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/BarcodeScanResult'
+          description: OK
+      security:
+      - Apikey: []
+      summary: Scan and recognize an image of a barcode
+      tags:
+      - BarcodeScan
+      x-content-type: multipart/form-data
+      x-accepts:
+      - application/json
+      - application/xml
+      - text/json
+      - text/xml
+  /barcode/scan/image/advanced:
+    post:
+      description: "Scan an image or photo of a barcode and return the result with\
+        \ enhanced accuracy, particularlly for low quality inputs using Advanced AI.\
+        \  Supported barcode types include AZTEC, CODABAR, CODE_39, CODE_93, CODE_128,\
+        \ DATA_MATRIX, EAN_8, EAN_13, ITF, MAXICODE, PDF_417, QR_CODE, RSS_14, RSS_EXPANDED,\
+        \ UPC_A, UPC_E, All_1D, UPC_EAN_EXTENSION, MSI, PLESSEY, IMB.  Uses large\
+        \ model AI.  Consumes 100 API calls per image page.  For Managed Instance\
+        \ and Private Cloud requires GPU infrastructure.  Supports PNG, PDF and JPEG\
+        \ input file formats."
+      operationId: BarcodeScan_ImageAdvanced
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/BarcodeScan_Image_request'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BarcodeAdvancedScanResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BarcodeAdvancedScanResult'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/BarcodeAdvancedScanResult'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/BarcodeAdvancedScanResult'
+          description: OK
+      security:
+      - Apikey: []
+      summary: Advanced AI scan and recognition of an image of one or more barcodes
+        of any type
+      tags:
+      - BarcodeScan
+      x-content-type: multipart/form-data
+      x-accepts:
+      - application/json
+      - application/xml
+      - text/json
+      - text/xml
+  /barcode/scan/image/advanced/qr:
+    post:
+      description: "Scan an image or photo of a QR barcode and return the result.\
+        \  Uses AI deep learning to read blurry or low resultion QR barcodes.  Supports\
+        \ PNG, PDF and JPEG input file formats."
+      operationId: BarcodeScan_ImageAdvancedQR
+      parameters:
+      - description: "Optional, preprocessing mode, default is 'Auto'.  Possible values\
+          \ are None (no preprocessing of the image), and Auto (automatic image enhancement\
+          \ of the image - including automatic unrotation of the image - before OCR\
+          \ is applied; this is recommended).  Set this to 'None' if you do not want\
+          \ to use automatic image unrotation and enhancement."
+        in: header
+        name: preprocessing
+        schema:
+          type: string
+      - description: "Optional, recognitionMode mode, default is 'Advanced'.  Possible\
+          \ values are Advanced, and Advanced2 which provides the most advanced available\
+          \ barcode recognition."
+        in: header
+        name: recognitionMode
+        schema:
+          type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/BarcodeScan_Image_request'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BarcodeScanQRAdvancedResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BarcodeScanQRAdvancedResult'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/BarcodeScanQRAdvancedResult'
+            text/xml:
+              schema:
+                $ref: '#/components/schemas/BarcodeScanQRAdvancedResult'
+          description: OK
+      security:
+      - Apikey: []
+      summary: Advanced AI scan and recognition of an image of one or more QR barcodes
+      tags:
+      - BarcodeScan
+      x-content-type: multipart/form-data
+      x-accepts:
+      - application/json
+      - application/xml
+      - text/json
+      - text/xml
+  /barcode/generate/qrcode:
+    post:
+      description: "Generate a QR code barcode as a PNG file, a type of 2D barcode\
+        \ which can encode free-form text information"
+      operationId: GenerateBarcode_QRCode
+      parameters:
+      - description: "Optional: width of the barcode in pixels.  Minimum value of\
+          \ 10."
+        in: header
+        name: width
+        schema:
+          type: integer
+      - description: "Optional: width of the barcode in pixels.  Minimum value of\
+          \ 10."
+        in: header
+        name: height
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+          text/json:
+            schema:
+              type: string
+          application/xml:
+            schema:
+              type: string
+          text/xml:
+            schema:
+              type: string
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+        description: QR code text to convert into the QR code barcode
+        required: true
+      responses:
+        "200":
+          content:
+            application/octet-stream:
+              schema:
+                description: Output file content from the operation
+                format: byte
+                title: OutputContent
+                type: string
+          description: OK
+      security:
+      - Apikey: []
+      summary: Generate a QR code barcode as PNG file
+      tags:
+      - GenerateBarcode
+      x-codegen-request-body-name: value
+      x-content-type: application/json
+      x-accepts:
+      - application/octet-stream
+  /barcode/generate/upc-a:
+    post:
+      description: "Validate and generate a UPC-A barcode as a PNG file, a type of\
+        \ 1D barcode"
+      operationId: GenerateBarcode_UPCA
+      parameters:
+      - description: "Optional: width of the barcode in pixels.  Minimum value of\
+          \ 10."
+        in: header
+        name: width
+        schema:
+          type: integer
+      - description: "Optional: width of the barcode in pixels.  Minimum value of\
+          \ 10."
+        in: header
+        name: height
+        schema:
+          type: integer
+      - description: "Optional: show text label on the image of the barcode value,\
+          \ default is true."
+        in: header
+        name: includeLabel
+        schema:
+          type: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+          text/json:
+            schema:
+              type: string
+          application/xml:
+            schema:
+              type: string
+          text/xml:
+            schema:
+              type: string
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+        description: UPC-A barcode value to generate from
+        required: true
+      responses:
+        "200":
+          content:
+            application/octet-stream:
+              schema:
+                description: Output file content from the operation
+                format: byte
+                title: OutputContent
+                type: string
+          description: OK
+      security:
+      - Apikey: []
+      summary: Generate a UPC-A code barcode as PNG file
+      tags:
+      - GenerateBarcode
+      x-codegen-request-body-name: value
+      x-content-type: application/json
+      x-accepts:
+      - application/octet-stream
+  /barcode/generate/upc-e:
+    post:
+      description: "Validates and generate a UPC-E barcode as a PNG file, a type of\
+        \ 1D barcode"
+      operationId: GenerateBarcode_UPCE
+      parameters:
+      - description: "Optional: width of the barcode in pixels.  Minimum value of\
+          \ 10."
+        in: header
+        name: width
+        schema:
+          type: integer
+      - description: "Optional: width of the barcode in pixels.  Minimum value of\
+          \ 10."
+        in: header
+        name: height
+        schema:
+          type: integer
+      - description: "Optional: show text label on the image of the barcode value,\
+          \ default is true."
+        in: header
+        name: includeLabel
+        schema:
+          type: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+          text/json:
+            schema:
+              type: string
+          application/xml:
+            schema:
+              type: string
+          text/xml:
+            schema:
+              type: string
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+        description: UPC-E barcode value to generate from
+        required: true
+      responses:
+        "200":
+          content:
+            application/octet-stream:
+              schema:
+                description: Output file content from the operation
+                format: byte
+                title: OutputContent
+                type: string
+          description: OK
+      security:
+      - Apikey: []
+      summary: Generate a UPC-E code barcode as PNG file
+      tags:
+      - GenerateBarcode
+      x-codegen-request-body-name: value
+      x-content-type: application/json
+      x-accepts:
+      - application/octet-stream
+  /barcode/generate/ean-13:
+    post:
+      description: "Validates and generate a EAN-13 barcode as a PNG file, a type\
+        \ of 1D barcode"
+      operationId: GenerateBarcode_EAN13
+      parameters:
+      - description: "Optional: width of the barcode in pixels.  Minimum value of\
+          \ 10."
+        in: header
+        name: width
+        schema:
+          type: integer
+      - description: "Optional: width of the barcode in pixels.  Minimum value of\
+          \ 10."
+        in: header
+        name: height
+        schema:
+          type: integer
+      - description: "Optional: show text label on the image of the barcode value,\
+          \ default is true."
+        in: header
+        name: includeLabel
+        schema:
+          type: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+          text/json:
+            schema:
+              type: string
+          application/xml:
+            schema:
+              type: string
+          text/xml:
+            schema:
+              type: string
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+        description: Barcode value to generate from
+        required: true
+      responses:
+        "200":
+          content:
+            application/octet-stream:
+              schema:
+                description: Output file content from the operation
+                format: byte
+                title: OutputContent
+                type: string
+          description: OK
+      security:
+      - Apikey: []
+      summary: Generate a EAN-13 code barcode as PNG file
+      tags:
+      - GenerateBarcode
+      x-codegen-request-body-name: value
+      x-content-type: application/json
+      x-accepts:
+      - application/octet-stream
+  /barcode/generate/ean-8:
+    post:
+      description: "Validates and generate a EAN-8 barcode as a PNG file, a type of\
+        \ 1D barcode"
+      operationId: GenerateBarcode_EAN8
+      parameters:
+      - description: "Optional: width of the barcode in pixels.  Minimum value of\
+          \ 10."
+        in: header
+        name: width
+        schema:
+          type: integer
+      - description: "Optional: width of the barcode in pixels.  Minimum value of\
+          \ 10."
+        in: header
+        name: height
+        schema:
+          type: integer
+      - description: "Optional: show text label on the image of the barcode value,\
+          \ default is true."
+        in: header
+        name: includeLabel
+        schema:
+          type: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+          text/json:
+            schema:
+              type: string
+          application/xml:
+            schema:
+              type: string
+          text/xml:
+            schema:
+              type: string
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+        description: Barcode value to generate from
+        required: true
+      responses:
+        "200":
+          content:
+            application/octet-stream:
+              schema:
+                description: Output file content from the operation
+                format: byte
+                title: OutputContent
+                type: string
+          description: OK
+      security:
+      - Apikey: []
+      summary: Generate a EAN-8 code barcode as PNG file
+      tags:
+      - GenerateBarcode
+      x-codegen-request-body-name: value
+      x-content-type: application/json
+      x-accepts:
+      - application/octet-stream
+  /barcode/generate/code-128:
+    post:
+      description: "Validates and generate a EAN-13 barcode as a PNG file, a type\
+        \ of 1D barcode"
+      operationId: GenerateBarcode_Code128
+      parameters:
+      - description: "Optional: width of the barcode in pixels.  Minimum value of\
+          \ 10."
+        in: header
+        name: width
+        schema:
+          type: integer
+      - description: "Optional: width of the barcode in pixels.  Minimum value of\
+          \ 10."
+        in: header
+        name: height
+        schema:
+          type: integer
+      - description: "Optional: show text label on the image of the barcode value,\
+          \ default is true."
+        in: header
+        name: includeLabel
+        schema:
+          type: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+          text/json:
+            schema:
+              type: string
+          application/xml:
+            schema:
+              type: string
+          text/xml:
+            schema:
+              type: string
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+        description: Barcode value to generate from
+        required: true
+      responses:
+        "200":
+          content:
+            application/octet-stream:
+              schema:
+                description: Output file content from the operation
+                format: byte
+                title: OutputContent
+                type: string
+          description: OK
+      security:
+      - Apikey: []
+      summary: Generate a EAN-13 code barcode as PNG file
+      tags:
+      - GenerateBarcode
+      x-codegen-request-body-name: value
+      x-content-type: application/json
+      x-accepts:
+      - application/octet-stream
+components:
+  schemas:
+    BarcodeLookupResponse:
+      description: Result of performing a barcode lookup
+      example:
+        Matches:
+        - EAN: EAN
+          Title: Title
+        - EAN: EAN
+          Title: Title
+        Successful: true
+      properties:
+        Successful:
+          description: "True if operation was successful, false otherwise"
+          type: boolean
+        Matches:
+          description: Resulting product matches for the input barcode
+          items:
+            $ref: '#/components/schemas/ProductMatch'
+          type: array
+      type: object
+    ProductMatch:
+      description: Matching product for the input barcode
+      example:
+        EAN: EAN
+        Title: Title
+      properties:
+        EAN:
+          description: EAN code for the product
+          type: string
+        Title:
+          description: Title of the product
+          type: string
+      type: object
+    BarcodeScanResult:
+      description: Result of the barcode scan
+      example:
+        RawText: RawText
+        Successful: true
+        BarcodeType: BarcodeType
+      properties:
+        Successful:
+          description: "True if the operation was successful, false otherwise"
+          type: boolean
+        BarcodeType:
+          description: "The type of the barcode; possible values are AZTEC, CODABAR,\
+            \ CODE_39, CODE_93, CODE_128, DATA_MATRIX, EAN_8, EAN_13, ITF, MAXICODE,\
+            \ PDF_417, QR_CODE, RSS_14, RSS_EXPANDED, UPC_A, UPC_E, All_1D, UPC_EAN_EXTENSION,\
+            \ MSI, PLESSEY, IMB"
+          type: string
+        RawText:
+          description: The barcode text
+          type: string
+      type: object
+    BarcodeAdvancedScanResult:
+      description: Result of the advanced barcode scan
+      example:
+        BarcodeCount: 0
+        ResultBarcodes:
+        - RawText: RawText
+          BarcodeType: BarcodeType
+        - RawText: RawText
+          BarcodeType: BarcodeType
+        ErrorMessage: ErrorMessage
+        Successful: true
+      properties:
+        Successful:
+          description: "True if the operation was successful, false otherwise"
+          type: boolean
+        ResultBarcodes:
+          description: Results of performing the barcode scan operation
+          items:
+            $ref: '#/components/schemas/BarcodeAdvancedResultItem'
+          type: array
+        BarcodeCount:
+          description: Number of barcodes read
+          format: int32
+          type: integer
+        ErrorMessage:
+          description: Error message if any
+          type: string
+      type: object
+    BarcodeAdvancedResultItem:
+      description: Advanced barcode scan result instance
+      example:
+        RawText: RawText
+        BarcodeType: BarcodeType
+      properties:
+        RawText:
+          description: The barcode text
+          type: string
+        BarcodeType:
+          description: "Type of the barcode; supported barcode types include AZTEC,\
+            \ CODABAR, CODE_39, CODE_93, CODE_128, DATA_MATRIX, EAN_8, EAN_13, ITF,\
+            \ MAXICODE, PDF_417, QR_CODE, RSS_14, RSS_EXPANDED, UPC_A, UPC_E, All_1D,\
+            \ UPC_EAN_EXTENSION, MSI, PLESSEY, IMB."
+          type: string
+      type: object
+    BarcodeScanQRAdvancedResult:
+      description: Result of the advanced QR barcode scan
+      example:
+        BarcodeCount: 0
+        ResultBarcodes:
+        - RawText: RawText
+        - RawText: RawText
+        ErrorMessage: ErrorMessage
+        Successful: true
+      properties:
+        Successful:
+          description: "True if the operation was successful, false otherwise"
+          type: boolean
+        ResultBarcodes:
+          description: Results of performing the QR barcode scan operation
+          items:
+            $ref: '#/components/schemas/BarcodeQRResultItem'
+          type: array
+        BarcodeCount:
+          description: Number of barcodes read
+          format: int32
+          type: integer
+        ErrorMessage:
+          description: Error message if any
+          type: string
+      type: object
+    BarcodeQRResultItem:
+      description: QR barcode instance
+      example:
+        RawText: RawText
+      properties:
+        RawText:
+          description: The barcode text
+          type: string
+      type: object
+    BarcodeScan_Image_request:
+      properties:
+        imageFile:
+          description: "Image file to perform the operation on.  Common file formats\
+            \ such as PNG, JPEG are supported."
+          format: binary
+          type: string
+      required:
+      - imageFile
+      type: object
+  securitySchemes:
+    Apikey:
+      description: API Key Authentication
+      in: header
+      name: Apikey
+      type: apiKey
+x-original-swagger-version: "2.0"
+

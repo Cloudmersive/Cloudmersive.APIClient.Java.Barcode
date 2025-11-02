@@ -8,3 +8,5 @@ Invoke-WebRequest -Uri 'https://api.cloudmersive.com/barcode/docs/v1/swagger' -O
 java -jar ./openapi-generator-cli-7.12.0.jar generate -i .\barcode-api-swagger.json -g java -o client -c packageconfig.json
 
 Copy-Item ./client/README.md ./README.md
+
+& mvn -f .\client\pom.xml clean package -DskipTests

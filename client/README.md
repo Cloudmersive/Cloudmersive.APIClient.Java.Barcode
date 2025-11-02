@@ -2,7 +2,7 @@
 
 barcodeapi
 - API version: v1
-  - Build date: 2025-11-02T23:46:04.781953800Z[Etc/UTC]
+  - Build date: 2025-11-02T23:56:08.422179200Z[Etc/UTC]
   - Generator version: 7.12.0
 
 Barcode APIs let you generate barcode images, and recognize values from images of barcodes.

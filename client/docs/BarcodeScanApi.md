@@ -1,5 +1,4 @@
 # BarcodeScanApi
-Generate the Cloudmersive Barcode API Java V2 Client
 
 All URIs are relative to *https://api.cloudmersive.com*
 

@@ -1,8 +1,8 @@
-# openapi-java-client
+# cloudmersive-barcode-api-java-client
 
 barcodeapi
 - API version: v1
-  - Build date: 2025-11-02T23:56:08.422179200Z[Etc/UTC]
+  - Build date: 2025-11-03T00:17:08.616854200Z[Etc/UTC]
   - Generator version: 7.12.0
 
 Barcode APIs let you generate barcode images, and recognize values from images of barcodes.
@@ -39,9 +39,9 @@ Add this dependency to your project's POM:
 
 ```xml
 <dependency>
-  <groupId>org.openapitools</groupId>
-  <artifactId>openapi-java-client</artifactId>
-  <version>v1</version>
+  <groupId>com.cloudmersive</groupId>
+  <artifactId>cloudmersive-barcode-api-java-client</artifactId>
+  <version>10.0.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -52,12 +52,12 @@ Add this dependency to your project's build file:
 
 ```groovy
   repositories {
-    mavenCentral()     // Needed if the 'openapi-java-client' jar has been published to maven central.
-    mavenLocal()       // Needed if the 'openapi-java-client' jar has been published to the local maven repo.
+    mavenCentral()     // Needed if the 'cloudmersive-barcode-api-java-client' jar has been published to maven central.
+    mavenLocal()       // Needed if the 'cloudmersive-barcode-api-java-client' jar has been published to the local maven repo.
   }
 
   dependencies {
-     implementation "org.openapitools:openapi-java-client:v1"
+     implementation "com.cloudmersive:cloudmersive-barcode-api-java-client:10.0.0"
   }
 ```
 
@@ -71,7 +71,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/openapi-java-client-v1.jar`
+* `target/cloudmersive-barcode-api-java-client-10.0.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started

@@ -48,7 +48,7 @@ import org.openapitools.client.JSON;
 /**
  * Advanced barcode scan result instance
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-03T00:19:23.847057800Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-03T00:25:33.115224200Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class BarcodeAdvancedResultItem {
   public static final String SERIALIZED_NAME_RAW_TEXT = "RawText";
   @SerializedName(SERIALIZED_NAME_RAW_TEXT)

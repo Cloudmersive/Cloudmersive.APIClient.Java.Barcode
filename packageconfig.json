@@ -1,13 +1,18 @@
 ﻿{
-    "name": "cloudmersive-barcode-java-client",
-    "version": "10.0.0",
-    "private": true,
-    "description": "Generate the Cloudmersive Barcode API Java V2 Client",
-    "scripts": {
-      "generate": "openapi-generator-cli generate -g java -i https://api.cloudmersive.com/swagger/api/barcode -o sdk/cloudmersive-barcode-java --api-package com.cloudmersive.client --model-package com.cloudmersive.client --invoker-package com.cloudmersive.client.invoker --additional-properties=library=okhttp-gson,groupId=com.cloudmersive,artifactId=cloudmersive-barcode-api-java-client,artifactVersion=1.0.0,dateLibrary=java8,hideGenerationTimestamp=true"
-    },
-    "devDependencies": {
-      "@openapitools/openapi-generator-cli": "^2"
+    "additionalProperties": {
+      "groupId": "com.cloudmersive",
+      "artifactId": "cloudmersive-barcode-api-java-client",
+      "artifactDescription": "Cloudmersive Barcode API Java Client",
+      "artifactUrl": "https://cloudmersive.com/barcode-api",
+  
+      "developerName": "Cloudmersive",
+      "developerOrganization": "Cloudmersive",
+      "developerOrganizationUrl": "https://cloudmersive.com/",
+  
+      "licenseName": "Apache License 2.0",
+      "licenseUrl": "https://www.apache.org/licenses/LICENSE-2.0.html",
+  
+      "artifactVersion": "10.0.0"
     }
   }
   

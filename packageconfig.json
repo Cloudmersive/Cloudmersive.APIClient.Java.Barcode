@@ -13,7 +13,9 @@
       "licenseName": "Apache License 2.0",
       "licenseUrl": "https://www.apache.org/licenses/LICENSE-2.0.html",
   
-      "artifactVersion": "10.0.0"
+      "artifactVersion": "10.0.0",
+
+      "scmUrl": "https://github.com/Cloudmersive/Cloudmersive.APIClient.Java.Barcode.git"
     }
   }
   

@@ -9,8 +9,8 @@
     <url>https://cloudmersive.com/barcode-api</url>
     <description>Cloudmersive Barcode API Java Client</description>
     <scm>
-        <connection>scm:git:git@github.com:openapitools/openapi-generator.git</connection>
-        <developerConnection>scm:git:git@github.com:openapitools/openapi-generator.git</developerConnection>
+        <connection>https://github.com/Cloudmersive/Cloudmersive.APIClient.Java.Barcode.git</connection>
+        <developerConnection>https://github.com/Cloudmersive/Cloudmersive.APIClient.Java.Barcode.git</developerConnection>
         <url>https://github.com/Cloudmersive/Cloudmersive.APIClient.Java.Barcode.git</url>
     </scm>
 

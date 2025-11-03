@@ -48,7 +48,7 @@ import org.openapitools.client.JSON;
 /**
  * Result of the barcode scan
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-03T00:17:08.616854200Z[Etc/UTC]", comments = "Generator version: 7.12.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-11-03T00:19:23.847057800Z[Etc/UTC]", comments = "Generator version: 7.12.0")
 public class BarcodeScanResult {
   public static final String SERIALIZED_NAME_SUCCESSFUL = "Successful";
   @SerializedName(SERIALIZED_NAME_SUCCESSFUL)
